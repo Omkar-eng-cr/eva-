@@ -1,60 +1,435 @@
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Eva Tours and Travels | Taxi Service in Pune | Airport & Outstation Cab</title>
+  <title><%= typeof title !== 'undefined' ? title : business.name + ' | Taxi Service' %></title>
+  <meta name="description" content="<%= typeof description !== 'undefined' ? description : business.name + ' - reliable local, outstation and airport taxi service in ' + business.location + '. Call ' + business.phone1 + ' to book.' %>">
+  <meta name="robots" content="index, follow">
 
-    <meta name="description" content="Eva Tours and Travels provides reliable taxi services in Pune. Book airport transfers, outstation cabs, one-way trips, round trips, and local taxi services. Call 9284153392.">
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="business.business">
+  <meta property="og:site_name" content="<%= business.name %>">
+  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : business.name %>">
+  <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : business.tagline %>">
+  <meta property="og:url" content="<%= siteUrl %><%= currentPath %>">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : business.name %>">
+  <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : business.tagline %>">
 
-    <meta name="keywords" content="Taxi Service Pune, Cab Service Pune, Airport Taxi Pune, Outstation Taxi, One Way Cab, Car Rental Pune, Eva Tours and Travels">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
 
-    <meta name="author" content="Eva Tours and Travels">
-
-    <meta name="robots" content="index, follow">
-
-    <link rel="canonical" href="https://www.evatours.in/">
-
-    <meta name="theme-color" content="#f2a93b">
-
-    <link rel="icon" href="/images/favicon.png">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Eva Tours and Travels">
-    <meta property="og:description" content="Best Taxi Service in Pune for Local, Airport and Outstation Trips.">
-    <meta property="og:url" content="https://www.evatours.in/">
-    <meta property="og:image" content="https://www.evatours.in/images/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Eva Tours and Travels">
-    <meta name="twitter:description" content="24x7 Taxi Service in Pune">
-    <meta name="twitter:image" content="https://www.evatours.in/images/og-image.jpg">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="/style.css">
-
-    <!-- Local Business Schema -->
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"TaxiService",
-      "name":"Eva Tours and Travels",
-      "url":"https://www.evatours.in",
-      "telephone":"+91 9284153392",
-      "email":"info@evatours.in",
-      "address":{
-        "@type":"PostalAddress",
-        "addressLocality":"Pune",
-        "addressRegion":"Maharashtra",
-        "addressCountry":"IN"
-      },
-      "areaServed":"Pune",
-      "priceRange":"₹₹",
-      "openingHours":"Mo-Su 00:00-23:59"
+  <!-- LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TaxiService",
+    "name": "<%= business.name %>",
+    "image": "<%= siteUrl %>/images/logo.png",
+    "url": "<%= siteUrl %>",
+    "telephone": "+91<%= business.phone1 %>",
+    "email": "<%= business.email %>",
+    "priceRange": "₹₹",
+    "areaServed": { "@type": "City", "name": "<%= business.location %>" },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "founder": { "@type": "Person", "name": "<%= business.owner %>" },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "00:00",
+      "closes": "23:59"
     }
-    </script>
+  }
+  </script>
+
+  <style>
+    :root{
+      --navy:#151A30;
+      --navy-2:#1F2745;
+      --cream:#FFF7EC;
+      --white:#FFFFFF;
+      --line:#EFE6D6;
+      --amber:#FFB020;
+      --amber-deep:#E8990A;
+      --coral:#FF6F61;
+      --mint:#2FD3A6;
+      --text-soft:#6B7280;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0; font-family:'Plus Jakarta Sans',sans-serif; color:var(--navy); background:var(--cream);}
+    .skip-link{
+      position:absolute; left:-999px; top:0; z-index:200;
+      background:var(--amber); color:var(--navy); padding:12px 18px;
+      border-radius:0 0 10px 0; font-weight:700; text-decoration:none;
+    }
+    .skip-link:focus{ left:0; }
+    .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+    /* ---------- UTILITY BAR ---------- */
+    .util-bar{
+      background:var(--navy);
+      color:#C7CBDA;
+      font-size:12.5px;
+      font-weight:500;
+    }
+    .util-bar .container{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:8px 24px;
+    }
+    .util-left{ display:flex; align-items:center; gap:8px; }
+    .util-left .dot{
+      width:6px; height:6px; border-radius:50%;
+      background:var(--mint); flex-shrink:0;
+      animation:dot-pulse 2s ease-out infinite;
+    }
+    @keyframes dot-pulse{
+      0%{ box-shadow:0 0 0 0 rgba(47,211,166,.5); }
+      70%{ box-shadow:0 0 0 6px rgba(47,211,166,0); }
+      100%{ box-shadow:0 0 0 0 rgba(47,211,166,0); }
+    }
+    .util-actions{ display:flex; align-items:center; gap:18px; }
+    .util-link{
+      display:inline-flex; align-items:center; gap:6px;
+      color:#E7E9F2; text-decoration:none; font-weight:600;
+      transition:color .15s ease;
+    }
+    .util-link:hover{ color:var(--amber); }
+    .util-link svg{ width:13px; height:13px; }
+    @media (max-width:640px){
+      .util-left span.util-text{ display:none; }
+      .util-bar .container{ justify-content:center; }
+    }
+
+    /* ---------- FLOATING HEADER ---------- */
+    .header-slot{
+      position:sticky;
+      top:0;
+      z-index:100;
+      padding:14px 16px 0;
+      background:var(--cream);
+    }
+    .site-header{
+      max-width:1180px;
+      margin:0 auto;
+      background:rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border:1px solid rgba(255,255,255,0.6);
+      border-radius:20px;
+      box-shadow:0 8px 30px rgba(21,26,48,0.08);
+      transition:box-shadow .25s ease, transform .25s ease;
+    }
+    .header-slot.is-scrolled .site-header{
+      box-shadow:0 14px 40px rgba(21,26,48,0.16);
+      transform:translateY(2px);
+    }
+
+    .nav-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 18px;
+    }
+
+    /* ---- Logo ---- */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      text-decoration:none;
+      color:var(--navy);
+    }
+    .brand-mark{ width:44px; height:44px; flex-shrink:0; }
+    .brand-text{ line-height:1.1; }
+    .brand-text .name{
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:700;
+      font-size:19px;
+      letter-spacing:-.01em;
+      color:var(--navy);
+    }
+    .brand-text .sub{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      font-weight:600;
+      font-size:10.5px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--coral);
+    }
+
+    /* ---- Pill nav ---- */
+    .main-nav ul{
+      display:flex;
+      align-items:center;
+      gap:2px;
+      list-style:none;
+      margin:0;
+      padding:5px;
+      background:rgba(21,26,48,0.04);
+      border-radius:999px;
+    }
+    .main-nav a{
+      position:relative;
+      display:inline-block;
+      padding:9px 16px;
+      border-radius:999px;
+      color:var(--text-soft);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      transition:background .18s ease, color .18s ease;
+      white-space:nowrap;
+    }
+    .main-nav a:hover{ color:var(--navy); }
+    .main-nav a.active{
+      color:var(--white);
+      background:linear-gradient(135deg, var(--coral) 0%, var(--amber) 100%);
+      box-shadow:0 4px 12px rgba(255,111,97,0.35);
+    }
+
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--navy);
+      color:var(--white) !important;
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:600;
+      font-size:14px;
+      padding:11px 20px;
+      border-radius:999px;
+      text-decoration:none;
+      transition:transform .18s ease, background .18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .nav-cta:hover{ background:var(--navy-2); transform:translateY(-1px); }
+    .nav-cta svg{ width:15px; height:15px; }
+    .nav-cta::after{
+      content:"";
+      position:absolute;
+      top:0; left:-60%;
+      width:40%; height:100%;
+      background:linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform:skewX(-20deg);
+      animation:cta-shine 3.2s ease-in-out infinite;
+    }
+    @keyframes cta-shine{
+      0%{ left:-60%; }
+      45%,100%{ left:130%; }
+    }
+
+    .nav-right{ display:flex; align-items:center; gap:10px; }
+
+    /* ---- Nav toggle ---- */
+    .nav-toggle{
+      display:none;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:5px;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1.5px solid rgba(21,26,48,0.12);
+      background:var(--white);
+      cursor:pointer;
+      padding:0;
+      flex-shrink:0;
+    }
+    .nav-toggle span{
+      display:block;
+      width:18px;
+      height:2px;
+      background:var(--navy);
+      border-radius:2px;
+      transition:transform .25s ease, opacity .25s ease;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 900px){
+      .nav-toggle{ display:flex; }
+
+      .main-nav{
+        position:fixed;
+        top:0; right:0;
+        height:100vh;
+        width:min(340px, 86vw);
+        background:var(--white);
+        box-shadow:-16px 0 44px rgba(21,26,48,0.18);
+        padding:96px 24px 32px;
+        transform:translateX(100%);
+        transition:transform .32s ease;
+        z-index:150;
+      }
+      .main-nav.is-open{ transform:translateX(0); }
+
+      .main-nav ul{
+        flex-direction:column;
+        align-items:stretch;
+        gap:4px;
+        background:none;
+        padding:0;
+      }
+      .main-nav a{
+        padding:14px 16px;
+        font-size:16.5px;
+        border-radius:14px;
+      }
+      .nav-cta{
+        margin-top:16px;
+        justify-content:center;
+        padding:14px 16px;
+      }
+
+      .nav-scrim{
+        position:fixed; inset:0;
+        background:rgba(21,26,48,0.45);
+        opacity:0; visibility:hidden;
+        transition:opacity .25s ease, visibility .25s ease;
+        z-index:140;
+      }
+      .nav-scrim.is-open{ opacity:1; visibility:visible; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .util-left .dot, .nav-cta::after{ animation:none; }
+    }
+  </style>
 </head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <div class="util-bar">
+    <div class="container">
+      <div class="util-left">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="util-text">Booking open 24×7 across <%= business.location %></span>
+      </div>
+      <div class="util-actions">
+        <a href="tel:+91<%= business.phone1 %>" class="util-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <%= business.phone1 %>
+        </a>
+        <a href="https://wa.me/91<%= business.phone1 %>" target="_blank" rel="noopener" class="util-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-slot" id="header-slot">
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a href="/" class="brand">
+          <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="badgeGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#FF6F61"/>
+                <stop offset="1" stop-color="#FFB020"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="44" height="44" rx="14" fill="#151A30"/>
+            <rect x="2" y="2" width="44" height="44" rx="14" fill="url(#badgeGrad)" opacity="0.14"/>
+            <path d="M9 29 L11.2 20.5 C11.7 18.4 13.4 17 15.6 17 H32.4 C34.6 17 36.3 18.4 36.8 20.5 L39 29"
+                  stroke="url(#badgeGrad)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="8" y="29" width="32" height="6.5" rx="2.4" fill="url(#badgeGrad)"/>
+            <circle cx="14.5" cy="37" r="3.1" fill="#151A30" stroke="url(#badgeGrad)" stroke-width="1.6"/>
+            <circle cx="33.5" cy="37" r="3.1" fill="#151A30" stroke="url(#badgeGrad)" stroke-width="1.6"/>
+            <rect x="14" y="19.5" width="20" height="6.5" rx="1.6" fill="#1F2745"/>
+            <rect x="16" y="21.2" width="6.2" height="3.2" rx="0.6" fill="#FFF7EC" opacity="0.9"/>
+            <rect x="25.8" y="21.2" width="6.2" height="3.2" rx="0.6" fill="#FFF7EC" opacity="0.9"/>
+            <circle cx="24" cy="10.4" r="2.6" fill="url(#badgeGrad)"/>
+          </svg>
+          <span class="brand-text">
+            <span class="name">Eva Tours</span><br>
+            <span class="sub">&amp; Travels · Taxi Service</span>
+          </span>
+        </a>
+
+        <div class="nav-right">
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+          </button>
+
+          <div class="nav-scrim" id="nav-scrim"></div>
+
+          <nav class="main-nav" id="main-nav" aria-label="Primary">
+            <ul>
+              <li><a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a></li>
+              <li><a href="/about" class="<%= currentPath === '/about' ? 'active' : '' %>">About</a></li>
+              <li><a href="/services" class="<%= currentPath === '/services' ? 'active' : '' %>">Services</a></li>
+              <li><a href="/packages" class="<%= currentPath === '/packages' ? 'active' : '' %>">Packages</a></li>
+              <li><a href="/gallery" class="<%= currentPath === '/gallery' ? 'active' : '' %>">Gallery</a></li>
+              <li><a href="/contact" class="<%= currentPath === '/contact' ? 'active' : '' %>">Contact</a></li>
+            </ul>
+          </nav>
+
+          <a href="tel:+91<%= business.phone1 %>" class="nav-cta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Book Now
+          </a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <script>
+    (function () {
+      var slot    = document.getElementById('header-slot');
+      var toggle  = document.getElementById('nav-toggle');
+      var nav     = document.getElementById('main-nav');
+      var scrim   = document.getElementById('nav-scrim');
+
+      function openNav () {
+        nav.classList.add('is-open');
+        scrim.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeNav () {
+        nav.classList.remove('is-open');
+        scrim.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      toggle.addEventListener('click', function () {
+        var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeNav() : openNav();
+      });
+      scrim.addEventListener('click', closeNav);
+      nav.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeNav);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeNav();
+      });
+
+      function onScroll () {
+        slot.classList.toggle('is-scrolled', window.scrollY > 8);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+  <main id="main">

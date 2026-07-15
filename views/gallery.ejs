@@ -1,98 +1,282 @@
 <%- include('partials/header') %>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --ink:#1F2A24;
+    --ink-soft:#5B6660;
+    --cream:#F6F3EC;
+    --white:#FFFFFF;
+    --line:#ECE7DC;
+    --green:#2F6F52;
+    --green-deep:#1E4A37;
+    --green-tint:#E7EFE9;
+    --gold:#F2A93B;
+    --gold-soft:#FCE7C2;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --shadow: 0 4px 14px rgba(31,42,36,0.08);
+    --shadow-hover: 0 18px 34px rgba(31,42,36,0.16);
+  }
+
+  * { box-sizing: border-box; }
+
+  /* ---------- HERO ---------- */
+  .gallery-hero{ padding: 72px 0 8px; }
+  .gallery-hero .eyebrow{
+    display:inline-block;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--green-deep);
+    margin-bottom:14px;
+  }
+  .gallery-hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(34px, 5vw, 50px);
+    line-height:1.08;
+    margin:0 0 14px;
+    color:var(--ink);
+  }
+  .gallery-hero .lede{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:52ch;
+    line-height:1.6;
+    margin:0;
+  }
+
+  /* ---------- FILTER BAR ---------- */
+  .fleet-filter{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:32px 0 8px;
+  }
+  .filter-btn{
+    appearance:none;
+    border:1.5px solid var(--line);
+    background:var(--white);
+    color:var(--ink-soft);
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+    padding:10px 20px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .18s ease, color .18s ease, border-color .18s ease, transform .15s ease;
+  }
+  .filter-btn:hover{ transform:translateY(-1px); border-color:var(--green); color:var(--green-deep); }
+  .filter-btn.active{
+    background:var(--ink);
+    border-color:var(--ink);
+    color:var(--white);
+  }
+
+  /* ---------- GALLERY GRID ---------- */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 28px;
-    padding: 1em 0 2em;
+    padding: 1.5em 0 2em;
   }
 
   .gallery-item {
-    background: #fffdf8;
-    border-radius: 16px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 4px 14px rgba(28, 35, 33, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity .25s ease;
     position: relative;
+    display:flex;
+    flex-direction:column;
   }
 
   .gallery-item:hover {
     transform: translateY(-6px);
-    box-shadow: 0 14px 28px rgba(28, 35, 33, 0.16);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .gallery-item.is-hidden{
+    display:none;
+  }
+
+  .gallery-media{
+    position:relative;
+    overflow:hidden;
   }
 
   .gallery-item img {
     width: 100%;
-    height: 260px;
+    height: 240px;
     object-fit: cover;
     display: block;
+    transition: transform .4s ease;
+  }
+  .gallery-item:hover img{ transform: scale(1.06); }
+
+  .gallery-tag{
+    position:absolute;
+    top:14px;
+    left:14px;
+    background:rgba(31,42,36,0.72);
+    color:var(--white);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:5px 11px;
+    border-radius:999px;
+    backdrop-filter: blur(2px);
   }
 
   .gallery-caption {
-    padding: 1.1em 1.2em 1.3em;
-    text-align: center;
-    background: #fffdf8;
+    padding: 1.2em 1.3em 1.4em;
+    text-align: left;
+    background: var(--white);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    flex:1;
+  }
+
+  .gallery-caption-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
   }
 
   .gallery-caption h3 {
-    margin: 0 0 8px;
+    margin: 0;
+    font-family:'Fraunces',serif;
+    font-weight:600;
     font-size: 1.2rem;
-    color: #1c2321;
-    letter-spacing: 0.3px;
+    color: var(--ink);
+    letter-spacing: 0.2px;
   }
 
-  .gallery-caption p {
+  .gallery-caption .price {
     display: inline-block;
     margin: 0;
-    padding: 6px 16px;
-    background: #f2a93b;
-    color: #1c2321;
-    font-weight: 700;
-    font-size: 0.95rem;
+    padding: 6px 14px;
+    background: var(--gold-soft);
+    color: #7a4e0a;
+    font-weight: 800;
+    font-size: 0.85rem;
     border-radius: 999px;
+    white-space:nowrap;
   }
 
+  .gallery-caption .seats{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  .book-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    margin-top:4px;
+    background:#25D366;
+    color:var(--white);
+    font-weight:700;
+    font-size:13.5px;
+    text-decoration:none;
+    padding:11px 16px;
+    border-radius:12px;
+    transition: background .18s ease, transform .15s ease;
+  }
+  .book-btn:hover{ background:#1DA851; transform:translateY(-1px); }
+  .book-btn svg{ width:16px; height:16px; flex-shrink:0; }
+
+  /* ---------- INQUIRE / CTA ---------- */
   .inquire-section {
-    background: #1c2321;
-    color: #f1eee6;
+    background: var(--ink);
+    color: var(--cream);
     text-align: center;
-    padding: 3.5em 1.5em;
-    border-radius: 20px;
-    margin: 2.5em 0;
+    padding: 3.6em 1.5em;
+    border-radius: var(--radius-lg);
+    margin: 3em 0 2em;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .inquire-section::before{
+    content:"";
+    position:absolute;
+    top:0; left:0; right:0;
+    height:4px;
+    background:linear-gradient(90deg, var(--green) 0%, var(--green) 60%, var(--gold) 100%);
   }
 
   .inquire-section h2 {
     margin: 0 0 10px;
-    font-size: 1.8rem;
-    color: #f1eee6;
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size: 1.9rem;
+    color: var(--cream);
   }
 
   .inquire-section p {
-    margin: 0 0 24px;
-    color: #cfc9bd;
+    margin: 0 0 26px;
+    color: #C9C4B6;
     font-size: 1rem;
   }
 
+  .inquire-actions{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
   .inquire-btn {
-    display: inline-block;
-    background: #f2a93b;
-    color: #1c2321;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 14px 32px;
+    display: inline-flex;
+    align-items:center;
+    gap:8px;
+    background: #25D366;
+    color: var(--white);
+    font-weight: 800;
+    font-size: 1.02rem;
+    padding: 14px 30px;
     border-radius: 999px;
     text-decoration: none;
     transition: transform 0.2s ease, background 0.2s ease;
   }
-
   .inquire-btn:hover {
-    background: #e8e2d3;
+    background: #1DA851;
     transform: scale(1.05);
+  }
+
+  .inquire-btn.secondary{
+    background:transparent;
+    color:var(--cream);
+    border:1.5px solid rgba(241,238,230,0.35);
+  }
+  .inquire-btn.secondary:hover{
+    background:rgba(241,238,230,0.08);
+    border-color:var(--cream);
+    transform:scale(1.03);
+  }
+
+  @media (max-width: 600px){
+    .gallery-hero{ padding-top: 48px; }
+    .inquire-section{ padding: 2.6em 1.2em; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .gallery-item, .gallery-item img, .book-btn, .filter-btn, .inquire-btn{ transition:none; }
   }
 </style>
 
-<section class="hero" style="padding-bottom: 2em;">
+<section class="hero gallery-hero" style="padding-bottom: 0;">
   <div class="container" style="grid-template-columns: 1fr;">
     <div class="hero-copy">
       <span class="eyebrow">Gallery</span>
@@ -104,65 +288,122 @@
 
 <section>
   <div class="container">
+
+    <!-- FILTER BAR -->
+    <div class="fleet-filter" role="group" aria-label="Filter fleet by type">
+      <button class="filter-btn active" data-filter="all">All Vehicles</button>
+      <button class="filter-btn" data-filter="car">Cars</button>
+      <button class="filter-btn" data-filter="van">Vans</button>
+      <button class="filter-btn" data-filter="bus">Buses</button>
+    </div>
+
     <div class="gallery-grid">
 
-      <div class="gallery-item">
-        <img src="/images/swift-dzire.png"
-             alt="Swift Dzire Taxi"
-             loading="lazy">
+      <div class="gallery-item" data-category="car">
+        <div class="gallery-media">
+          <span class="gallery-tag">Sedan</span>
+          <img src="/images/swift-dzire.png" alt="Swift Dzire Taxi" loading="lazy">
+        </div>
         <div class="gallery-caption">
-          <h3>Swift Dzire</h3>
-          <p>₹14 / km</p>
+          <div class="gallery-caption-top">
+            <h3>Swift Dzire</h3>
+            <span class="price">₹14 / km</span>
+          </div>
+          <p class="seats">4 seater · AC · best for city &amp; short trips</p>
+          <a href="https://wa.me/919284153392?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Swift%20Dzire%20(%E2%82%B914%2Fkm).%20Please%20share%20availability." target="_blank" rel="noopener" class="book-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+            Book This Ride
+          </a>
         </div>
       </div>
 
-      <div class="gallery-item">
-        <img src="/images/ertiga.png"
-             alt="Maruti Ertiga Taxi"
-             loading="lazy">
+      <div class="gallery-item" data-category="car">
+        <div class="gallery-media">
+          <span class="gallery-tag">SUV</span>
+          <img src="/images/ertiga.png" alt="Maruti Ertiga Taxi" loading="lazy">
+        </div>
         <div class="gallery-caption">
-          <h3>Ertiga</h3>
-          <p>₹16 / km</p>
+          <div class="gallery-caption-top">
+            <h3>Ertiga</h3>
+            <span class="price">₹16 / km</span>
+          </div>
+          <p class="seats">6 seater · AC · families &amp; small groups</p>
+          <a href="https://wa.me/919284153392?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Ertiga%20(%E2%82%B916%2Fkm).%20Please%20share%20availability." target="_blank" rel="noopener" class="book-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+            Book This Ride
+          </a>
         </div>
       </div>
 
-      <div class="gallery-item">
-        <img src="/images/innova-crysta.jpg"
-             alt="Toyota Innova Crysta Taxi"
-             loading="lazy">
+      <div class="gallery-item" data-category="car">
+        <div class="gallery-media">
+          <span class="gallery-tag">SUV</span>
+          <img src="/images/innova-crysta.jpg" alt="Toyota Innova Crysta Taxi" loading="lazy">
+        </div>
         <div class="gallery-caption">
-          <h3>Innova Crysta</h3>
-          <p>₹20 / km</p>
+          <div class="gallery-caption-top">
+            <h3>Innova Crysta</h3>
+            <span class="price">₹20 / km</span>
+          </div>
+          <p class="seats">7 seater · AC · long distance comfort</p>
+          <a href="https://wa.me/919284153392?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Innova%20Crysta%20(%E2%82%B920%2Fkm).%20Please%20share%20availability." target="_blank" rel="noopener" class="book-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+            Book This Ride
+          </a>
         </div>
       </div>
 
-      <div class="gallery-item">
-        <img src="/images/urbania.jpg"
-             alt="Force Urbania"
-             loading="lazy">
+      <div class="gallery-item" data-category="van">
+        <div class="gallery-media">
+          <span class="gallery-tag">Van</span>
+          <img src="/images/urbania.jpg" alt="Force Urbania" loading="lazy">
+        </div>
         <div class="gallery-caption">
-          <h3>Force Urbania</h3>
-          <p>₹35 / km</p>
+          <div class="gallery-caption-top">
+            <h3>Force Urbania</h3>
+            <span class="price">₹35 / km</span>
+          </div>
+          <p class="seats">17 seater · AC · group outings</p>
+          <a href="https://wa.me/919284153392?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Force%20Urbania%20(%E2%82%B935%2Fkm).%20Please%20share%20availability." target="_blank" rel="noopener" class="book-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+            Book This Ride
+          </a>
         </div>
       </div>
 
-      <div class="gallery-item">
-        <img src="/images/32.jpg"
-             alt="32 Seater Bus"
-             loading="lazy">
+      <div class="gallery-item" data-category="bus">
+        <div class="gallery-media">
+          <span class="gallery-tag">Bus</span>
+          <img src="/images/32.jpg" alt="32 Seater Bus" loading="lazy">
+        </div>
         <div class="gallery-caption">
-          <h3>32 Seater Bus</h3>
-          <p>₹55 / km</p>
+          <div class="gallery-caption-top">
+            <h3>32 Seater Bus</h3>
+            <span class="price">₹55 / km</span>
+          </div>
+          <p class="seats">32 seater · AC · tours &amp; corporate events</p>
+          <a href="https://wa.me/919284153392?text=Hi%2C%20I%27d%20like%20to%20book%20the%2032%20Seater%20Bus%20(%E2%82%B955%2Fkm).%20Please%20share%20availability." target="_blank" rel="noopener" class="book-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+            Book This Ride
+          </a>
         </div>
       </div>
 
-      <div class="gallery-item">
-        <img src="/images/45.jpg"
-             alt="45 Seater Bus"
-             loading="lazy">
+      <div class="gallery-item" data-category="bus">
+        <div class="gallery-media">
+          <span class="gallery-tag">Bus</span>
+          <img src="/images/45.jpg" alt="45 Seater Bus" loading="lazy">
+        </div>
         <div class="gallery-caption">
-          <h3>45 Seater Bus</h3>
-          <p>₹65 / km</p>
+          <div class="gallery-caption-top">
+            <h3>45 Seater Bus</h3>
+            <span class="price">₹65 / km</span>
+          </div>
+          <p class="seats">45 seater · AC · large group travel</p>
+          <a href="https://wa.me/919284153392?text=Hi%2C%20I%27d%20like%20to%20book%20the%2045%20Seater%20Bus%20(%E2%82%B965%2Fkm).%20Please%20share%20availability." target="_blank" rel="noopener" class="book-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+            Book This Ride
+          </a>
         </div>
       </div>
 
@@ -171,10 +412,47 @@
     <div class="inquire-section">
       <h2>Inquire Now</h2>
       <p>Tell us your trip and we'll get a cab ready for you.</p>
-      <a href="tel:+919284153392" class="inquire-btn">Call 9284153392</a>
+      <div class="inquire-actions">
+        <a href="https://wa.me/919284153392?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20booking%20a%20cab." target="_blank" rel="noopener" class="inquire-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.75 13.4L3 21l3.7-1.28a8.9 8.9 0 0 0 5.35 1.8h.01a8.94 8.94 0 0 0 5.54-15.2ZM12.06 20a7.4 7.4 0 0 1-3.78-1.03l-.27-.16-2.8.97.94-2.73-.18-.28A7.44 7.44 0 1 1 12.06 20Zm4.07-5.56c-.22-.11-1.31-.65-1.51-.72s-.35-.11-.5.11-.58.72-.71.87-.26.17-.48.06a6.13 6.13 0 0 1-1.8-1.11 6.66 6.66 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.06-.11-.5-1.21-.69-1.65s-.37-.38-.5-.38h-.43a.83.83 0 0 0-.6.28 2.53 2.53 0 0 0-.79 1.88 4.4 4.4 0 0 0 .92 2.32 10.06 10.06 0 0 0 3.85 3.4c.54.23.96.37 1.29.48a3.1 3.1 0 0 0 1.42.09 2.33 2.33 0 0 0 1.53-1.08 1.9 1.9 0 0 0 .13-1.08c-.06-.1-.2-.16-.42-.27Z"/></svg>
+          Message on WhatsApp
+        </a>
+        <a href="tel:+919284153392" class="inquire-btn secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 9284153392
+        </a>
+      </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  // Functional filter bar — filters vehicle cards by category
+  (function () {
+    var buttons = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.gallery-item');
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        var filter = btn.getAttribute('data-filter');
+        cards.forEach(function (card) {
+          var match = filter === 'all' || card.getAttribute('data-category') === filter;
+          card.classList.toggle('is-hidden', !match);
+        });
+      });
+    });
+  })();
+
+  // Click tracking for WhatsApp / call buttons
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a.book-btn, a.inquire-btn');
+    if (!link) return;
+    console.log('Booking action:', link.href);
+  });
+</script>
 
 <%- include('partials/footer') %>
