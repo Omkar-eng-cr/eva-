@@ -1,108 +1,60 @@
-<!doctype html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title><%= typeof title !== 'undefined' ? title : business.name + ' | Taxi Service' %></title>
-  <meta name="description" content="<%= typeof description !== 'undefined' ? description : business.name + ' - reliable local, outstation and airport taxi service in ' + business.location + '. Call ' + business.phone1 + ' to book.' %>">
-  <link rel="stylesheet" href="style.css">
-  <meta name="robots" content="index, follow">
+    <title>Eva Tours and Travels | Taxi Service in Pune | Airport & Outstation Cab</title>
 
-  <!-- Open Graph / social sharing -->
-  <meta property="og:type" content="business.business">
-  <meta property="og:site_name" content="<%= business.name %>">
-  <meta property="og:title" content="<%= typeof title !== 'undefined' ? title : business.name %>">
-  <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : business.tagline %>">
-  <meta property="og:url" content="<%= siteUrl %><%= currentPath %>">
-  <meta property="og:locale" content="en_IN">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : business.name %>">
-  <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : business.tagline %>">
+    <meta name="description" content="Eva Tours and Travels provides reliable taxi services in Pune. Book airport transfers, outstation cabs, one-way trips, round trips, and local taxi services. Call 9284153392.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
+    <meta name="keywords" content="Taxi Service Pune, Cab Service Pune, Airport Taxi Pune, Outstation Taxi, One Way Cab, Car Rental Pune, Eva Tours and Travels">
 
-  <!-- LocalBusiness structured data - helps Google show this as a local taxi service -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "TaxiService",
-    "name": "<%= business.name %>",
-    "image": "<%= siteUrl %>/images/logo.png",
-    "url": "<%= siteUrl %>",
-    "telephone": "+91<%= business.phone1 %>",
-    "email": "<%= business.email %>",
-    "priceRange": "₹₹",
-    "areaServed": {
-      "@type": "City",
-      "name": "<%= business.location %>"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Pune",
-      "addressRegion": "Maharashtra",
-      "addressCountry": "IN"
-    },
-    "founder": {
-      "@type": "Person",
-      "name": "<%= business.owner %>"
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
-      ],
-      "opens": "00:00",
-      "closes": "23:59"
+    <meta name="author" content="Eva Tours and Travels">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.evatours.in/">
+
+    <meta name="theme-color" content="#f2a93b">
+
+    <link rel="icon" href="/images/favicon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Eva Tours and Travels">
+    <meta property="og:description" content="Best Taxi Service in Pune for Local, Airport and Outstation Trips.">
+    <meta property="og:url" content="https://www.evatours.in/">
+    <meta property="og:image" content="https://www.evatours.in/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Eva Tours and Travels">
+    <meta name="twitter:description" content="24x7 Taxi Service in Pune">
+    <meta name="twitter:image" content="https://www.evatours.in/images/og-image.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"TaxiService",
+      "name":"Eva Tours and Travels",
+      "url":"https://www.evatours.in",
+      "telephone":"+91 9284153392",
+      "email":"info@evatours.in",
+      "address":{
+        "@type":"PostalAddress",
+        "addressLocality":"Pune",
+        "addressRegion":"Maharashtra",
+        "addressCountry":"IN"
+      },
+      "areaServed":"Pune",
+      "priceRange":"₹₹",
+      "openingHours":"Mo-Su 00:00-23:59"
     }
-  }
-  </script>
+    </script>
 </head>
-<body>
-  <a href="#main" class="skip-link">Skip to content</a>
-
-  <div class="call-strip">
-    <div class="container">
-      <span>Booking open 24 x 7 across <%= business.location %></span>
-      <a href="tel:+91<%= business.phone1 %>" class="plate-mini">Call: <%= business.phone1 %></a>
-    </div>
-  </div>
-
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a href="/" class="brand">
-        <svg class="brand-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="2" y="2" width="44" height="44" rx="8" fill="#1c2321"/>
-          <path d="M10 30 L12 21 C12.5 19 14 18 16 18 H32 C34 18 35.5 19 36 21 L38 30" stroke="#f2a93b" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="9" y="30" width="30" height="6" rx="2" fill="#f2a93b"/>
-          <circle cx="15" cy="37" r="3" fill="#f1eee6" stroke="#f2a93b" stroke-width="2"/>
-          <circle cx="33" cy="37" r="3" fill="#f1eee6" stroke="#f2a93b" stroke-width="2"/>
-          <rect x="15" y="20.5" width="18" height="6" rx="1.5" fill="#3a4340"/>
-        </svg>
-        <span class="brand-text">
-          <span class="name">Eva Tours</span><br>
-          <span class="sub">&amp; Travels · Taxi Service</span>
-        </span>
-      </a>
-
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="main-nav" aria-label="Primary">
-        <ul>
-          <li><a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a></li>
-          <li><a href="/about" class="<%= currentPath === '/about' ? 'active' : '' %>">About</a></li>
-          <li><a href="/services" class="<%= currentPath === '/services' ? 'active' : '' %>">Services</a></li>
-          <li><a href="/packages" class="<%= currentPath === '/packages' ? 'active' : '' %>">Packages</a></li>
-          <li><a href="/gallery" class="<%= currentPath === '/gallery' ? 'active' : '' %>">Gallery</a></li>
-          <li><a href="/contact" class="<%= currentPath === '/contact' ? 'active' : '' %>">Contact</a></li>
-          <li><a href="tel:+91<%= business.phone1 %>" class="nav-cta">Book Now</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
