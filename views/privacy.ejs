@@ -1,0 +1,130 @@
+<%- include('partials/header') %>
+
+<section class="hero" style="padding-bottom: 2em;">
+  <div class="container" style="grid-template-columns: 1fr;">
+    <div class="hero-copy">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p class="lede">
+        This page explains what information Eva Tours and Travels collects
+        when you book a cab or contact us, and how we use it.
+      </p>
+      <p style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-soft);">
+        Last updated: July 2026
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="card" style="max-width: 820px; margin: 0 auto; padding: 2.2em;">
+
+      <h2>1. Who We Are</h2>
+      <p>
+        Eva Tours and Travels is a taxi service owned and operated by
+        <%= business.owner %>, serving <%= business.location %> and
+        surrounding routes. This policy covers information collected
+        through this website (<%= siteUrl %>) and through direct phone
+        or WhatsApp bookings.
+      </p>
+
+      <h2>2. Information We Collect</h2>
+      <p>When you book a cab or send an enquiry, we may collect:</p>
+      <ul>
+        <li>Your name and mobile number</li>
+        <li>Pickup and drop locations</li>
+        <li>Travel date and trip type (local, outstation, airport, etc.)</li>
+        <li>Any additional details you choose to share in the booking form or over a call</li>
+        <li>Your email address, if you contact us by email</li>
+      </ul>
+      <p>
+        We do not collect payment card details through this website —
+        payments are made directly to the driver by cash or UPI at the
+        end of a trip.
+      </p>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>We use the details you share only to:</p>
+      <ul>
+        <li>Confirm and assign a driver for your booking</li>
+        <li>Contact you about pickup timing or changes to your trip</li>
+        <li>Quote and agree a fare before the trip begins</li>
+        <li>Follow up on feedback or complaints, if any</li>
+      </ul>
+      <p>
+        We do not use your information for unrelated marketing, and we
+        do not sell or rent your personal information to any third party.
+      </p>
+
+      <h2>4. Sharing of Information</h2>
+      <p>
+        Your name, phone number, and pickup/drop details are shared only
+        with the driver assigned to your trip, so far as needed to
+        complete that booking. We may also disclose information if
+        required to do so by law or by a government authority.
+      </p>
+
+      <h2>5. Cookies &amp; Third-Party Services</h2>
+      <p>
+        This website embeds a Google Maps view on the Contact page to
+        show our service area. Google may set its own cookies when that
+        map loads, governed by Google's own privacy policy. Aside from
+        this, the site does not currently use tracking or advertising
+        cookies.
+      </p>
+
+      <h2>6. Data Security</h2>
+      <p>
+        Booking enquiries submitted through this website are used to
+        contact you about your trip and are not stored in a public
+        database. We take reasonable steps to keep phone numbers and
+        booking details confidential, but no method of transmission over
+        the internet is completely secure.
+      </p>
+
+      <h2>7. Your Choices</h2>
+      <p>
+        You can ask us to delete any enquiry details we hold about you,
+        or ask what information we have, by contacting us using the
+        details below. Since bookings are mostly arranged by phone, you
+        can also simply let us know verbally when you call.
+      </p>
+
+      <h2>8. Children's Privacy</h2>
+      <p>
+        Our services are intended for use by adults booking transport.
+        We do not knowingly collect personal information from children.
+      </p>
+
+      <h2>9. Changes to This Policy</h2>
+      <p>
+        We may update this policy from time to time as our services
+        change. The "Last updated" date at the top of this page will
+        reflect the most recent revision.
+      </p>
+
+      <h2>10. Contact Us</h2>
+      <p>
+        For any privacy-related questions, reach out to
+        <%= business.owner %> directly:
+      </p>
+      <ul>
+        <li>Phone: <a href="tel:+91<%= business.phone1 %>"><%= business.phone1 %></a> / <a href="tel:+91<%= business.phone2 %>"><%= business.phone2 %></a></li>
+        <li>Email: <a href="mailto:<%= business.email %>"><%= business.email %></a></li>
+        <li>Service area: <%= business.location %></li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-ink">
+  <div class="container" style="text-align:center;">
+    <h2>Questions about your data?</h2>
+    <p>Call or email us any time — we're happy to explain.</p>
+    <a href="tel:+91<%= business.phone1 %>" class="btn btn-primary"><%= business.phone1 %></a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

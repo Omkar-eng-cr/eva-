@@ -1,0 +1,409 @@
+<%- include('partials/header') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Us | Eva Tours & Travels</title>
+
+<meta name="description" content="Book a taxi online with Eva Tours & Travels. 24x7 cab booking, airport transfer, local rides, outstation trips and corporate travel services in Pune.">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+background:#f7f9fc;
+color:#333;
+line-height:1.6;
+}
+
+.hero{
+background:linear-gradient(135deg,#0f4c81,#1e88e5,#42a5f5);
+padding:90px 20px;
+color:#fff;
+text-align:center;
+}
+
+.hero h1{
+font-size:52px;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:19px;
+max-width:700px;
+margin:auto;
+opacity:.95;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+.contact-wrapper{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:40px;
+padding:70px 0;
+}
+
+.card{
+background:#fff;
+padding:35px;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.card h2{
+margin-bottom:25px;
+color:#0f4c81;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.field{
+display:flex;
+flex-direction:column;
+}
+
+.field label{
+font-weight:600;
+margin-bottom:8px;
+color:#444;
+}
+
+.field input,
+.field select,
+.field textarea{
+padding:14px;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:15px;
+outline:none;
+transition:.3s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+border-color:#1e88e5;
+box-shadow:0 0 8px rgba(30,136,229,.2);
+}
+
+.field textarea{
+height:130px;
+resize:none;
+}
+
+.full{
+grid-column:1/3;
+}
+.btn{
+display:inline-block;
+margin-top:25px;
+padding:15px 35px;
+background:#0f4c81;
+color:#fff;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+background:#1565c0;
+transform:translateY(-2px);
+}
+
+.info-card{
+background:#fff;
+padding:30px;
+border-radius:18px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+margin-bottom:25px;
+}
+
+.info-card h3{
+margin-bottom:20px;
+color:#0f4c81;
+}
+
+.info-item{
+display:flex;
+align-items:flex-start;
+margin-bottom:20px;
+}
+
+.info-item span{
+font-size:26px;
+margin-right:15px;
+}
+
+.info-item h4{
+margin-bottom:5px;
+color:#222;
+}
+
+.info-item p,
+.info-item a{
+color:#666;
+text-decoration:none;
+}
+
+.map{
+width:100%;
+height:320px;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.map iframe{
+width:100%;
+height:100%;
+border:0;
+}
+
+@media(max-width:900px){
+
+.contact-wrapper{
+grid-template-columns:1fr;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:auto;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Book Your Taxi Today</h1>
+
+<p>
+Fast, Safe & Reliable Taxi Services for Local,
+Outstation, Airport Transfers and Corporate Travel.
+Available 24×7 in Pune.
+</p>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="contact-wrapper">
+
+<div class="card">
+
+<h2>Request a Booking</h2>
+
+<form id="bookingForm" onsubmit="sendWhatsApp(event)">
+
+<div class="form-grid">
+
+<div class="field">
+<label>Full Name</label>
+<input type="text" id="name" required>
+</div>
+
+<div class="field">
+<label>Mobile Number</label>
+<input type="tel" id="phone" maxlength="10" required>
+</div>
+
+<div class="field">
+<label>Pickup Location</label>
+<input type="text" id="pickup" required>
+</div>
+
+<div class="field">
+<label>Drop Location</label>
+<input type="text" id="drop" required>
+</div>
+<div class="field">
+<label>Trip Type</label>
+<select id="tripType">
+<option value="Local Ride">Local Ride</option>
+<option value="Outstation">Outstation</option>
+<option value="Airport Transfer">Airport Transfer</option>
+<option value="One Way">One Way</option>
+<option value="Round Trip">Round Trip</option>
+<option value="Corporate">Corporate Travel</option>
+</select>
+</div>
+
+<div class="field">
+<label>Travel Date</label>
+<input type="date" id="travelDate">
+</div>
+
+<div class="field full">
+<label>Additional Details</label>
+<textarea
+id="message"
+placeholder="Pickup time, number of passengers, luggage details, vehicle preference, etc."></textarea>
+</div>
+
+</div>
+
+<button class="btn" type="submit">
+🚖 Send Booking Request
+</button>
+
+</form>
+
+</div>
+
+<!-- Contact Information -->
+
+<div>
+
+<div class="info-card">
+
+<h3>Contact Information</h3>
+
+<div class="info-item">
+<span>📞</span>
+<div>
+<h4>Call / WhatsApp</h4>
+<a href="tel:+919284153392">
++91 9284153392
+</a>
+</div>
+</div>
+
+<div class="info-item">
+<span>📧</span>
+<div>
+<h4>Email</h4>
+<a href="mailto:evatoursandtravels@gmail.com">
+evatoursandtravels@gmail.com
+</a>
+</div>
+</div>
+
+<div class="info-item">
+<span>📍</span>
+<div>
+<h4>Office Address</h4>
+<p>
+Karvenagar,<br>
+Pune, Maharashtra
+</p>
+</div>
+</div>
+
+<div class="info-item">
+<span>🕒</span>
+<div>
+<h4>Working Hours</h4>
+<p>
+Open 24 Hours<br>
+7 Days a Week
+</p>
+</div>
+</div>
+
+</div>
+
+<div class="map">
+
+<iframe
+src="https://www.google.com/maps?q=Karve+Nagar,+Pune,+Maharashtra&output=embed"
+loading="lazy"
+allowfullscreen
+referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function sendWhatsApp(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let pickup=document.getElementById("pickup").value;
+let drop=document.getElementById("drop").value;
+let tripType=document.getElementById("tripType").value;
+let travelDate=document.getElementById("travelDate").value;
+let message=document.getElementById("message").value;
+
+// Mobile number validation
+if(!/^[6-9][0-9]{9}$/.test(phone)){
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+}
+
+let whatsappMessage=
+`🚖 *NEW CAB BOOKING REQUEST*%0A%0A`+
+`👤 Name : ${name}%0A`+
+`📱 Mobile : ${phone}%0A`+
+`📍 Pickup : ${pickup}%0A`+
+`🏁 Drop : ${drop}%0A`+
+`🚕 Trip Type : ${tripType}%0A`+
+`📅 Travel Date : ${travelDate}%0A%0A`+
+`📝 Additional Details : ${message}%0A%0A`+
+`Sent from Eva Tours & Travels Website`;
+
+let whatsappNumber="919284153392";
+
+let url=`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+window.open(url,"_blank");
+
+// Reset Form
+document.getElementById("bookingForm").reset();
+
+alert("Thank you! WhatsApp is opening to send your booking request.");
+
+}
+
+</script>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

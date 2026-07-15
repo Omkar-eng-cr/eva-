@@ -1,0 +1,180 @@
+<%- include('partials/header') %>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    padding: 1em 0 2em;
+  }
+
+  .gallery-item {
+    background: #fffdf8;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(28, 35, 33, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(28, 35, 33, 0.16);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-caption {
+    padding: 1.1em 1.2em 1.3em;
+    text-align: center;
+    background: #fffdf8;
+  }
+
+  .gallery-caption h3 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    color: #1c2321;
+    letter-spacing: 0.3px;
+  }
+
+  .gallery-caption p {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 16px;
+    background: #f2a93b;
+    color: #1c2321;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 999px;
+  }
+
+  .inquire-section {
+    background: #1c2321;
+    color: #f1eee6;
+    text-align: center;
+    padding: 3.5em 1.5em;
+    border-radius: 20px;
+    margin: 2.5em 0;
+  }
+
+  .inquire-section h2 {
+    margin: 0 0 10px;
+    font-size: 1.8rem;
+    color: #f1eee6;
+  }
+
+  .inquire-section p {
+    margin: 0 0 24px;
+    color: #cfc9bd;
+    font-size: 1rem;
+  }
+
+  .inquire-btn {
+    display: inline-block;
+    background: #f2a93b;
+    color: #1c2321;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 14px 32px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .inquire-btn:hover {
+    background: #e8e2d3;
+    transform: scale(1.05);
+  }
+</style>
+
+<section class="hero" style="padding-bottom: 2em;">
+  <div class="container" style="grid-template-columns: 1fr;">
+    <div class="hero-copy">
+      <span class="eyebrow">Gallery</span>
+      <h1>A look at<br>the fleet.</h1>
+      <p class="lede">Choose the ride that fits your trip — from a compact Dzire to a 45 seater bus for large groups.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="/images/swift-dzire.png"
+             alt="Swift Dzire Taxi"
+             loading="lazy">
+        <div class="gallery-caption">
+          <h3>Swift Dzire</h3>
+          <p>₹14 / km</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="/images/ertiga.png"
+             alt="Maruti Ertiga Taxi"
+             loading="lazy">
+        <div class="gallery-caption">
+          <h3>Ertiga</h3>
+          <p>₹16 / km</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="/images/innova-crysta.jpg"
+             alt="Toyota Innova Crysta Taxi"
+             loading="lazy">
+        <div class="gallery-caption">
+          <h3>Innova Crysta</h3>
+          <p>₹20 / km</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="/images/urbania.jpg"
+             alt="Force Urbania"
+             loading="lazy">
+        <div class="gallery-caption">
+          <h3>Force Urbania</h3>
+          <p>₹35 / km</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="/images/32.jpg"
+             alt="32 Seater Bus"
+             loading="lazy">
+        <div class="gallery-caption">
+          <h3>32 Seater Bus</h3>
+          <p>₹55 / km</p>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="/images/45.jpg"
+             alt="45 Seater Bus"
+             loading="lazy">
+        <div class="gallery-caption">
+          <h3>45 Seater Bus</h3>
+          <p>₹65 / km</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="inquire-section">
+      <h2>Inquire Now</h2>
+      <p>Tell us your trip and we'll get a cab ready for you.</p>
+      <a href="tel:+919284153392" class="inquire-btn">Call 9284153392</a>
+    </div>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>

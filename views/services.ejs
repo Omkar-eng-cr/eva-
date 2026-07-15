@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+
+<section class="hero" style="padding-bottom: 2em;">
+  <div class="container" style="grid-template-columns: 1fr;">
+    <div class="hero-copy">
+      <span class="eyebrow">Our Services</span>
+      <h1>Six ways we get<br>you where you're going.</h1>
+      <p class="lede">Every service below is a straight taxi booking — call, confirm, ride.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="grid grid-2">
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="18" width="36" height="14" rx="3" stroke="#2f6f52" stroke-width="2.5"/><path d="M10 18l3-8h22l3 8" stroke="#2f6f52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="34" r="3" fill="#f2a93b"/><circle cx="33" cy="34" r="3" fill="#f2a93b"/></svg>
+        <h3>Local City Rides</h3>
+        <p>Point-to-point taxi within <%= business.location %> — office commute, shopping trips, medical visits or a night out. Booked by the ride or the hour.</p>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 24h36M30 12l12 12-12 12" stroke="#2f6f52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Outstation Trips</h3>
+        <p>One-way drops or round trips to any city or hill station. Fare fixed upfront, driver briefed on the route and halts in advance.</p>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 6c-7 0-12 5.5-12 12 0 9 12 24 12 24s12-15 12-24c0-6.5-5-12-12-12z" stroke="#2f6f52" stroke-width="2.5"/><circle cx="24" cy="18" r="4" fill="#f2a93b"/></svg>
+        <h3>Airport Transfers</h3>
+        <p>Flight-timed pickup and drop for early departures or late arrivals. Give us your flight number and we track the timing.</p>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="16" stroke="#2f6f52" stroke-width="2.5"/><path d="M24 15v9l6 4" stroke="#f2a93b" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Hourly &amp; Full-Day Rentals</h3>
+        <p>A car and driver on call for meetings, errands, or a day of sightseeing. Billed by the hour or a flat day rate.</p>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 40V16a4 4 0 014-4h12a4 4 0 014 4v24" stroke="#2f6f52" stroke-width="2.5"/><rect x="20" y="8" width="8" height="6" rx="1" fill="#f2a93b"/><path d="M14 26h20" stroke="#2f6f52" stroke-width="2.5"/></svg>
+        <h3>Corporate &amp; Employee Transport</h3>
+        <p>Recurring pickup and drop for offices, with monthly billing and the same drivers assigned to your team where possible.</p>
+      </div>
+
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 6l4 10h10l-8 7 3 11-9-6-9 6 3-11-8-7h10z" stroke="#2f6f52" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg>
+        <h3>Wedding &amp; Event Car Rental</h3>
+        <p>Decorated or plain sedans and SUVs for wedding processions, guest transfers and event-day logistics.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Good To Know</span>
+      <h2>How every booking is handled</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Upfront Pricing</h3>
+        <p>Outstation and rental fares are quoted before you confirm — no meter guesswork on long routes.</p>
+      </div>
+      <div class="card">
+        <h3>AC Vehicles</h3>
+        <p>Hatchback, sedan, SUV and tempo traveller options, all air-conditioned and cleaned between trips.</p>
+      </div>
+      <div class="card">
+        <h3>Cash or UPI</h3>
+        <p>Pay however suits you at the end of the trip — no advance payment required for local rides.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-ink">
+  <div class="container" style="text-align:center;">
+    <h2>Pick a service, make the call</h2>
+    <p>Tell us the pickup point and where you're headed.</p>
+    <a href="tel:+91<%= business.phone1 %>" class="btn btn-primary"><%= business.phone1 %></a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

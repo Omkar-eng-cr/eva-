@@ -1,0 +1,586 @@
+<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> | Pune - Mumbai Cab Packages</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #f4f1ea;
+    color: #14213d;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  a { text-decoration: none; }
+
+  /* HEADER */
+  header {
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #a4133c;
+    letter-spacing: 1px;
+  }
+
+  .logo span {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #555;
+    letter-spacing: 0.5px;
+  }
+
+  .nav-call {
+    display: flex;
+    gap: 12px;
+  }
+
+  .nav-call a {
+    background: #ff6b00;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+  }
+
+.hero{
+    background:linear-gradient(135deg,#0b132b,#1c2541,#3a506b,#5bc0be);
+    color:#fff;
+    text-align:center;
+    padding:3.5em 1.5em 3em;
+}.hero{
+    background:linear-gradient(135deg,#0b132b,#1c2541,#3a506b,#5bc0be);
+    color:#fff;
+    text-align:center;
+    padding:3.5em 1.5em 3em;
+}.hero{
+    background:linear-gradient(135deg,#87888c,#1c2541,#3a506b,#5bc0be);
+    color:#fff;
+    text-align:center;
+    padding:3.5em 1.5em 3em;
+}
+  .hero .tagline {
+    font-size: 0.95rem;
+    color: #ffb703;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #d7dde8;
+  }
+
+  .hero h1 .arrow { color: #ff6b00; }
+
+  .hero h2 {
+    font-size: 1.4rem;
+    background: #ffffff;
+    color: #14213d;
+    display: inline-block;
+    padding: 8px 26px;
+    border-radius: 999px;
+    margin: 14px 0 18px;
+    font-weight: 800;
+  }
+
+  .hero p.sub {
+    color: #d7dde8;
+    font-size: 1rem;
+  }
+
+  .badge-247 {
+    display: inline-block;
+    margin-top: 20px;
+    background: #ff6b00;
+    color: #fff;
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+  }
+
+  /* TOGGLE */
+  .route-toggle {
+    text-align: center;
+    padding: 2em 1em 0.5em;
+  }
+
+  .route-toggle .toggle-group {
+    display: inline-flex;
+    background: #e6e1d6;
+    border-radius: 999px;
+    padding: 4px;
+  }
+
+  .route-toggle button {
+    border: none;
+    background: transparent;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #14213d;
+    transition: all 0.2s ease;
+  }
+
+  .route-toggle button.active {
+    background: #14213d;
+    color: #fff;
+  }
+
+  /* PACKAGES */
+  .packages-section {
+    padding: 2em 0 3em;
+  }
+
+  .packages-section h2.section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.2em;
+    color: #14213d;
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+  }
+
+  .pkg-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 22px 18px;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(20, 33, 61, 0.08);
+    border-top: 5px solid #ff6b00;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .pkg-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgba(20, 33, 61, 0.16);
+  }
+
+  .pkg-card h3 {
+    font-size: 1.15rem;
+    color: #14213d;
+    margin-bottom: 4px;
+  }
+
+  .pkg-card .seats {
+    font-size: 0.8rem;
+    color: #8a8a80;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .pkg-card .price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #a4133c;
+  }
+
+  .pkg-card .price small {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8a8a80;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .pkg-card .book-link {
+    display: inline-block;
+    margin-top: 16px;
+    background: #14213d;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 10px 22px;
+    border-radius: 999px;
+  }
+
+  .pkg-card .book-link:hover { background: #ff6b00; }
+
+  .note {
+    text-align: center;
+    color: #7a7a70;
+    font-size: 0.85rem;
+    margin-top: 18px;
+  }
+
+  /* FEATURES */
+  .features-section {
+    background: #14213d;
+    color: #fff;
+    padding: 3em 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 20px;
+    text-align: center;
+  }
+
+  .feature-item .icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .feature-item p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #d7dde8;
+  }
+
+  /* BOOKING FORM */
+  .booking-section {
+    padding: 3.5em 0;
+  }
+
+  .booking-box {
+    background: #ffffff;
+    max-width: 560px;
+    margin: 0 auto;
+    border-radius: 18px;
+    padding: 2.2em 2em;
+    box-shadow: 0 8px 24px rgba(20, 33, 61, 0.12);
+  }
+
+  .booking-box h2 {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    color: #14213d;
+  }
+
+  .booking-box p.sub {
+    text-align: center;
+    color: #7a7a70;
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #14213d;
+  }
+
+  input, select {
+    padding: 10px 12px;
+    border: 1px solid #d8d3c6;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: #ff6b00;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: #ff6b00;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s ease;
+  }
+
+  .submit-btn:hover { background: #14213d; }
+
+  .form-msg {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    color: #a4133c;
+    display: none;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #14213d;
+    color: #d7dde8;
+    text-align: center;
+    padding: 2.5em 1.5em;
+  }
+
+  footer .call-numbers {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+  }
+
+  footer .call-numbers a {
+    color: #ffb703;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  footer .brand {
+    font-weight: 800;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+
+  footer .brand span {
+    display: block;
+    font-size: 0.75rem;
+    color: #9aa5b8;
+    font-weight: 400;
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.9rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+    
+
+  <section class="hero">
+    <div class="container">
+      <div class="tagline">तुमचा प्रत्येक प्रवास सुरक्षित, आरामदायी आणि विश्वासार्ह बनवणे हेच आमचे ध्येय. !</div>
+      <h1>PUNE <span class="arrow">⇄</span> MUMBAI</h1>
+      <h2>DAILY CAB SERVICE</h2>
+      <p class="sub">SAFE &nbsp;•&nbsp; COMFORTABLE &nbsp;•&nbsp; ON TIME</p>
+      <div class="badge-247">24/7 SERVICE</div>
+    </div>
+  </section>
+
+  <section class="route-toggle">
+    <div class="toggle-group">
+      <button type="button" class="active" onclick="setRoute('pm', this)">Pune → Mumbai</button>
+      <button type="button" onclick="setRoute('mp', this)">Mumbai → Pune</button>
+    </div>
+  </section>
+
+  <section class="packages-section">
+    <div class="container">
+      <h2 class="section-title">Choose Your Package</h2>
+      <div class="packages-grid" id="packagesGrid">
+
+        <div class="pkg-card">
+          <h3>Dzire</h3>
+          <div class="seats">Sedan</div>
+          <div class="price">₹3,000<small>One Way</small></div>
+          <a href="#bookingForm" class="book-link" onclick="selectPackage('Dzire (Sedan) - ₹3,000')">Book Now</a>
+        </div>
+
+        <div class="pkg-card">
+          <h3>Ertiga</h3>
+          <div class="seats">6+1 Seater</div>
+          <div class="price">₹4,000<small>One Way</small></div>
+          <a href="#bookingForm" class="book-link" onclick="selectPackage('Ertiga (6+1) - ₹4,000')">Book Now</a>
+        </div>
+
+        <div class="pkg-card">
+          <h3>Innova Crysta</h3>
+          <div class="seats">6+1 Seater</div>
+          <div class="price">₹5,500<small>One Way</small></div>
+          <a href="#bookingForm" class="book-link" onclick="selectPackage('Innova Crysta (6+1) - ₹5,500')">Book Now</a>
+        </div>
+
+        <div class="pkg-card">
+          <h3>Urbania</h3>
+          <div class="seats">17 Seater</div>
+          <div class="price">₹15,000<small>One Way</small></div>
+          <a href="#bookingForm" class="book-link" onclick="selectPackage('Urbania (17 Seater) - ₹15,000')">Book Now</a>
+        </div>
+
+        <div class="pkg-card">
+          <h3>32 Seater</h3>
+          <div class="seats">Luxury Bus</div>
+          <div class="price">₹22,000<small>One Way</small></div>
+          <a href="#bookingForm" class="book-link" onclick="selectPackage('32 Seater Luxury Bus - ₹22,000')">Book Now</a>
+        </div>
+
+        <div class="pkg-card">
+          <h3>45 Seater</h3>
+          <div class="seats">Pushback Bus</div>
+          <div class="price">₹28,000<small>One Way</small></div>
+          <a href="#bookingForm" class="book-link" onclick="selectPackage('45 Seater Pushback Bus - ₹28,000')">Book Now</a>
+        </div>
+
+      </div>
+      <p class="note">Toll &amp; parking extra (if applicable). Extra parking as per actual.</p>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item"><div class="icon">✈️</div><p>Airport Transfer</p></div>
+        <div class="feature-item"><div class="icon">🚗</div><p>One Way &amp; Round Trip</p></div>
+        <div class="feature-item"><div class="icon">💼</div><p>Corporate Booking</p></div>
+        <div class="feature-item"><div class="icon">🛡️</div><p>Safe &amp; Reliable</p></div>
+        <div class="feature-item"><div class="icon">👨‍✈️</div><p>Experienced Drivers</p></div>
+        <div class="feature-item"><div class="icon">🕐</div><p>24×7 Service</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking-section" id="bookingForm">
+    <div class="container">
+      <div class="booking-box">
+        <h2>Book Your Cab</h2>
+        <p class="sub">Fill this in and we'll confirm on WhatsApp instantly.</p>
+        <form id="bookForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" required placeholder="10-digit number" pattern="[0-9]{10}">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Travel Date</label>
+              <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+              <label for="package">Package</label>
+              <select id="package" required>
+                <option value="">Select vehicle</option>
+                <option value="Dzire (Sedan) - ₹3,000">Dzire - ₹3,000</option>
+                <option value="Ertiga (6+1) - ₹4,000">Ertiga - ₹4,000</option>
+                <option value="Innova Crysta (6+1) - ₹5,500">Innova Crysta - ₹5,500</option>
+                <option value="Urbania (17 Seater) - ₹15,000">Urbania - ₹15,000</option>
+                <option value="32 Seater Luxury Bus - ₹22,000">32 Seater Bus - ₹22,000</option>
+                <option value="45 Seater Pushback Bus - ₹28,000">45 Seater Bus - ₹28,000</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group full">
+            <label for="msg">Additional Notes (optional)</label>
+            <input type="text" id="msg" placeholder="Pickup point, timing, etc.">
+          </div>
+          <button type="submit" class="submit-btn">Send Booking Request on WhatsApp</button>
+          <p class="form-msg" id="formMsg">Please fill all required fields correctly.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="call-numbers">
+      <a href="tel:+919284153392">📞 9284153392</a>
+      <a href="tel:+919552817420">📞 9552817420</a>
+    </div>
+    <div class="brand">Eva Tource And Traval <span>Your Journey, Our Responsibility</span></div>
+  </footer>
+
+<script>
+  var currentRoute = 'Pune to Mumbai';
+
+  function setRoute(route, btn) {
+    var buttons = document.querySelectorAll('.route-toggle button');
+    buttons.forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentRoute = route === 'pm' ? 'Pune to Mumbai' : 'Mumbai to Pune';
+  }
+
+  function selectPackage(pkgLabel) {
+    var select = document.getElementById('package');
+    for (var i = 0; i < select.options.length; i++) {
+      if (select.options[i].value === pkgLabel) {
+        select.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  document.getElementById('bookForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name = document.getElementById('name').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var date = document.getElementById('date').value;
+    var pkg = document.getElementById('package').value;
+    var msg = document.getElementById('msg').value.trim();
+    var formMsg = document.getElementById('formMsg');
+
+    if (!name || !/^[0-9]{10}$/.test(phone) || !date || !pkg) {
+      formMsg.style.display = 'block';
+      return;
+    }
+    formMsg.style.display = 'none';
+
+    var text = 'Hi RV Travels, I want to book a cab.%0A'
+      + 'Name: ' + encodeURIComponent(name) + '%0A'
+      + 'Phone: ' + encodeURIComponent(phone) + '%0A'
+      + 'Route: ' + encodeURIComponent(currentRoute) + '%0A'
+      + 'Package: ' + encodeURIComponent(pkg) + '%0A'
+      + 'Date: ' + encodeURIComponent(date)
+      + (msg ? '%0ANotes: ' + encodeURIComponent(msg) : '');
+
+    window.open('https://wa.me/919284153392?text=' + text, '_blank');
+  });
+</script>
+
+</body>
+</html>
+<%- include('partials/footer') %>

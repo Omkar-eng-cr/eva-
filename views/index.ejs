@@ -1,0 +1,166 @@
+<%- include('partials/header') %>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-copy">
+      <span class="eyebrow">Taxi Service · <%= business.location %></span>
+      <h1>Every trip<br>runs on <span class="accent">time.</span></h1>
+      <p class="lede">
+        Eva Tours and Travels puts a clean, well-maintained cab on your route —
+        airport drops, outstation trips, local sightseeing or a daily office
+        commute. One call from <%= business.owner %>'s team and a driver is on the way.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:+91<%= business.phone1 %>" class="btn btn-primary">Call &amp; Book a Cab</a>
+        <a href="/services" class="btn btn-ghost">See Services</a>
+      </div>
+    </div>
+
+    <div class="plate-card">
+      <div class="plate-number">
+        <small>Booking Line</small>
+        MH · EVA · <%= business.phone1 %>
+      </div>
+      <div class="plate-meta">
+        <span>Owner: <%= business.owner %></span>
+        <span>Open 24×7</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK SERVICES -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What We Drive</span>
+      <h2>Taxi service for every kind of trip</h2>
+      <p>No tour packages, no middlemen — just a cab, a driver, and a route you need covered.</p>
+    </div>
+
+    <div class="grid grid-4">
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="18" width="36" height="14" rx="3" stroke="#2f6f52" stroke-width="2.5"/><path d="M10 18l3-8h22l3 8" stroke="#2f6f52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15" cy="34" r="3" fill="#f2a93b"/><circle cx="33" cy="34" r="3" fill="#f2a93b"/></svg>
+        <h3>Local City Rides</h3>
+        <p>Point-to-point cabs within <%= business.location %>, metered and on time.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 24h36M30 12l12 12-12 12" stroke="#2f6f52" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Outstation Trips</h3>
+        <p>One-way or round trips to any city, with an experienced highway driver.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 6c-7 0-12 5.5-12 12 0 9 12 24 12 24s12-15 12-24c0-6.5-5-12-12-12z" stroke="#2f6f52" stroke-width="2.5"/><circle cx="24" cy="18" r="4" fill="#f2a93b"/></svg>
+        <h3>Airport Transfers</h3>
+        <p>Flight-timed pickups and drops, tracked so you're never left waiting.</p>
+      </div>
+      <div class="card">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="16" stroke="#2f6f52" stroke-width="2.5"/><path d="M24 15v9l6 4" stroke="#f2a93b" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Hourly Rentals</h3>
+        <p>Car-on-call for meetings, errands or a full day out — pay by the hour.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW BOOKING WORKS — route signature -->
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Route To Your Ride</span>
+      <h2>Booking a cab, step by step</h2>
+      <p>Four stops between your call and your ride showing up at the door.</p>
+    </div>
+
+    <div class="route">
+      <div class="route-track" aria-hidden="true"></div>
+      <ol class="route-stops">
+        <li class="route-stop">
+          <div class="stop-content">
+            <h3>1 · Call or Message</h3>
+            <p>Ring <%= business.phone1 %> or <%= business.phone2 %> with your pickup point and destination.</p>
+          </div>
+          <div class="pin">1</div>
+          <div class="spacer"></div>
+        </li>
+        <li class="route-stop">
+          <div class="spacer"></div>
+          <div class="pin">2</div>
+          <div class="stop-content">
+            <h3>2 · Get a Fixed Fare</h3>
+            <p>We confirm the cab type and quote a clear, upfront fare — no surprises later.</p>
+          </div>
+        </li>
+        <li class="route-stop">
+          <div class="stop-content">
+            <h3>3 · Driver Arrives</h3>
+            <p>A verified driver reaches your pickup point at the agreed time.</p>
+          </div>
+          <div class="pin">3</div>
+          <div class="spacer"></div>
+        </li>
+        <li class="route-stop">
+          <div class="spacer"></div>
+          <div class="pin">4</div>
+          <div class="stop-content">
+            <h3>4 · Ride &amp; Pay</h3>
+            <p>Sit back for the trip and pay by cash or UPI at the end — simple.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section-ink">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><strong>24×7</strong><span>Booking Line</span></div>
+      <div class="stat"><strong>100+</strong><span>Routes Covered</span></div>
+      <div class="stat"><strong>Fixed</strong><span>Upfront Fares</span></div>
+      <div class="stat"><strong>Verified</strong><span>Local Drivers</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">On The Record</span>
+      <h2>What riders say</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="testimonial">
+        Booked an early morning airport cab and the driver was waiting five minutes before pickup. Clean car, easy payment.
+        — Frequent Flyer, Pune
+      </div>
+      <div class="testimonial">
+        Used Eva Tours for a Pune–Mahabaleshwar round trip. Fare was fixed upfront and the driver knew the ghat roads well.
+        — Weekend Traveller
+      </div>
+      <div class="testimonial">
+        Our office now books the hourly package for client visits. Reliable, and Sushil ji personally follows up.
+        — Corporate Client
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-alt">
+  <div class="container">
+    <div class="plate-card" style="max-width: 640px; margin: 0 auto; text-align:center;">
+      <h2 style="margin-top:0.4em;">Need a cab right now?</h2>
+      <p>Call <%= business.owner %>'s team and a driver will be assigned in minutes.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="tel:+91<%= business.phone1 %>" class="btn btn-primary"><%= business.phone1 %></a>
+        <a href="tel:+91<%= business.phone2 %>" class="btn btn-ghost"><%= business.phone2 %></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

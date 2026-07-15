@@ -1,0 +1,128 @@
+<%- include('partials/header') %>
+
+<section class="hero" style="padding-bottom: 2em;">
+  <div class="container" style="grid-template-columns: 1fr;">
+    <div class="hero-copy">
+      <span class="eyebrow">About Eva Tours and Travels</span>
+      <h1>A local taxi service,<br>run person to person.</h1>
+      <p class="lede">
+        Eva Tours and Travels is a <%= business.location %>-based taxi service owned
+        and operated by <%= business.owner %>. No call centre, no app queue —
+        just a direct line to someone who knows the roads and the drivers.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container grid grid-2" style="align-items:center;">
+    <div>
+      <span class="eyebrow">Our Story</span>
+      <h2>Started on referrals, still runs on them</h2>
+      <p>
+        Eva Tours and Travels began as a single-car local taxi service and grew
+        route by route as riders in <%= business.location %> passed the number on
+        to family, colleagues and neighbours. That's still how most bookings
+        arrive — one recommendation at a time.
+      </p>
+      <p>
+        <%= business.owner %> personally oversees every booking line, which
+        means fares are agreed upfront, drivers are briefed on the route, and
+        there's always someone to call if a plan changes mid-trip.
+      </p>
+    </div>
+    <div class="card" style="padding:2em;">
+      <svg viewBox="0 0 200 140" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="140" rx="10" fill="#e8e2d3"/>
+        <rect x="20" y="70" width="160" height="45" rx="8" fill="#1c2321"/>
+        <path d="M35 70 L45 40 C47 34 52 30 60 30 H140 C148 30 153 34 155 40 L165 70" stroke="#f2a93b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="55" cy="118" r="12" fill="#e8e2d3" stroke="#f2a93b" stroke-width="4"/>
+        <circle cx="145" cy="118" r="12" fill="#e8e2d3" stroke="#f2a93b" stroke-width="4"/>
+        <rect x="55" y="45" width="90" height="20" rx="4" fill="#3a4340"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Why Riders Choose Us</span>
+      <h2>What we hold ourselves to</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="card-tag">Fixed Fares</span>
+        <h3>No meter surprises</h3>
+        <p>Every outstation and package fare is quoted before the trip starts, over the phone.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Verified Drivers</span>
+        <h3>Known faces, not strangers</h3>
+        <p>Drivers are regulars on our line, briefed on pickup points and traveller preferences.</p>
+      </div>
+      <div class="card">
+        <span class="card-tag">Direct Line</span>
+        <h3>Talk to a person</h3>
+        <p>Booking, changes and support all go through <%= business.phone1 %> — no chatbot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our Fleet</span>
+      <h2>Cabs for the trip you're planning</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="fleet">
+        <thead>
+          <tr>
+            <th>Vehicle Type</th>
+            <th>Best For</th>
+            <th>Seats</th>
+            <th>Luggage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hatchback (AC)</td>
+            <td>Local rides, short hops</td>
+            <td>4</td>
+            <td>2 bags</td>
+          </tr>
+          <tr>
+            <td>Sedan (AC)</td>
+            <td>Airport transfers, city-to-city</td>
+            <td>4</td>
+            <td>3 bags</td>
+          </tr>
+          <tr>
+            <td>SUV</td>
+            <td>Family trips, hill routes</td>
+            <td>6-7</td>
+            <td>4-5 bags</td>
+          </tr>
+          <tr>
+            <td>Tempo Traveller</td>
+            <td>Group and corporate travel</td>
+            <td>9-12</td>
+            <td>Bulk luggage</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section-ink">
+  <div class="container" style="text-align:center;">
+    <h2>Ready when you are</h2>
+    <p>Save the number, and Eva Tours and Travels is one call away.</p>
+    <a href="tel:+91<%= business.phone1 %>" class="btn btn-primary"><%= business.phone1 %></a>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
